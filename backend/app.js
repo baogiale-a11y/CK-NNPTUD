@@ -10,13 +10,12 @@ const indexRouter = require('./routes');
 
 const app = express();
 
-mongoose
-  .connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log('MongoDB connected');
   })
   .catch((err) => {
-    console.error('❌ MongoDB connection error:', err.message);
+    console.error('MongoDB connection error:', err.message);
   });
 
 app.use(
@@ -25,6 +24,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
