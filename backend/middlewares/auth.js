@@ -1,28 +1,27 @@
-const User = require('../schemas/user.schema');
-const { verifyAccessToken } = require('../utils/jwt.utils');
-const { fail } = require('../utils/response.utils');
+const User = require('../schemas/user');
+const { verifyAccessToken } = require('../utils/jwt');
 
-const authMiddleware = async (req, res, next) => {
+const auth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization || '';
     const [type, token] = authHeader.split(' ');
 
     if (type !== 'Bearer' || !token) {
-      return fail(res, 'Unauthorized', 401);
+      return next(new Error('Unauthorized'));
     }
 
     const decoded = verifyAccessToken(token);
     const user = await User.findById(decoded.userId).populate('role');
 
     if (!user || !user.isActive) {
-      return fail(res, 'User not found or inactive', 401);
+      return next(new Error('User not found or inactive'));
     }
 
     req.user = user;
-    next();
+    return next();
   } catch (error) {
-    return fail(res, 'Invalid or expired token', 401);
+    return next(new Error('Invalid or expired token'));
   }
 };
 
-module.exports = authMiddleware;
+module.exports = auth;
