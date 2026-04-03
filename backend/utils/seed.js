@@ -1,8 +1,8 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Role = require('../schemas/role.schema');
-const User = require('../schemas/user.schema');
+const Role = require('../schemas/role');
+const User = require('../schemas/user');
 
 const seed = async () => {
   await mongoose.connect(process.env.MONGO_URI);

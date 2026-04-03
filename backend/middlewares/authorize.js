@@ -1,4 +1,4 @@
-const { fail } = require('../utils/response.utils');
+const { fail } = require('../utils/response');
 
 const authorize = (...roles) => (req, res, next) => {
   const roleName = req.user?.role?.name;

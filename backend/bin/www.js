@@ -2,7 +2,7 @@
 
 const http = require('http');
 const app = require('../app');
-const { initSocket } = require('../utils/socket.utils');
+const { initSocket } = require('../utils/socket');
 
 const port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);

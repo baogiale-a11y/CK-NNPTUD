@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.log('MongoDB connected');
   })
   .catch((err) => {
-    console.error('MongoDB connection error:', err.message);
+    console.error('MongoDB connection error', err.message);
   });
 
 app.use(
@@ -34,7 +34,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', indexRouter);
 
 app.get('/', (req, res) => {
-  res.json({ success: true, message: 'StudyTogether API is running' });
+  res.json({ success: true, message: 'Route is running' });
 });
 
 app.use((req, res) => {
