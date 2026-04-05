@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const uploadController = require('../controllers/upload.controller');
+const uploadController = require('../controllers/upload');
 const uploadMulter = require('../utils/upload.multer');
 const { ok, fail } = require('../utils/response');
 

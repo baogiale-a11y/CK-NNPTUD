@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const followController = require('../controllers/follow.controller');
+const followController = require('../controllers/follow');
 const { getIO } = require('../utils/socket');
 const { ok, fail } = require('../utils/response');
 

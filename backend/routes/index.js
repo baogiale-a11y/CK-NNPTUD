@@ -2,6 +2,13 @@ const express = require('express');
 const authRouter = require('./auth');
 const usersRouter = require('./users');
 const rolesRouter = require('./roles');
+const postsRouter = require('./posts');
+const commentsRouter = require('./comments');
+const groupsRouter = require('./groups');
+const followsRouter = require('./follows');
+const messagesRouter = require('./messages');
+const uploadsRouter = require('./uploads');
+const notificationsRouter = require('./notifications');
 
 const router = express.Router();
 

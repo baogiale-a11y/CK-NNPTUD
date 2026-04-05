@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const messageController = require('../controllers/message.controller');
+const messageController = require('../controllers/message');
 const { getIO } = require('../utils/socket');
 const { ok, fail } = require('../utils/response');
 
