@@ -18,12 +18,12 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('MongoDB connection error', err.message);
   });
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-    credentials: true,
-  })
-);
+
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
+
 
 app.use(logger('dev'));
 app.use(express.json());

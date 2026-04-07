@@ -51,4 +51,16 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+router.post('/:id/like', auth, async (req, res) => {
+  try {
+    const data = await commentController.likeComment({
+      id: req.params.id,
+      currentUser: req.user,
+    });
+    return ok(res, data, 'Like/Unlike comment success');
+  } catch (error) {
+    return fail(res, error.message, 400);
+  }
+});
+
 module.exports = router;

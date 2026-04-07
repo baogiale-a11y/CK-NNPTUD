@@ -10,6 +10,8 @@ import GroupsPage from '../pages/GroupsPage';
 import GroupDetailPage from '../pages/GroupDetailPage';
 import MessagesPage from '../pages/MessagesPage';
 import AdminPage from '../pages/AdminPage';
+import NotificationsPage from '../pages/NotificationsPage';
+import UsersPage from '../pages/UsersPage';
 
 export default function AppRoutes() {
   return (
@@ -28,8 +30,17 @@ export default function AppRoutes() {
         }
       />
       <Route path="/profile/:id" element={<ProfilePage />} />
+      <Route path="/users" element={<UsersPage />} />
       <Route path="/groups" element={<GroupsPage />} />
       <Route path="/groups/:id" element={<GroupDetailPage />} />
+      <Route
+        path="/notifications"
+        element={
+          <ProtectedRoute>
+            <NotificationsPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/messages"
         element={

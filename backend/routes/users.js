@@ -5,6 +5,15 @@ const { ok, fail } = require('../utils/response');
 
 const router = express.Router();
 
+router.get('/search', auth, async (req, res) => {
+  try {
+    const data = await userController.searchUsers({ query: req.query });
+    return ok(res, data, 'Search users success');
+  } catch (error) {
+    return fail(res, error.message, 400);
+  }
+});
+
 router.get('/', auth, async (req, res) => {
   try {
     const data = await userController.getUsers();

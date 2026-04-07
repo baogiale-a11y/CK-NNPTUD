@@ -9,6 +9,7 @@ const CommentSchema = new mongoose.Schema(
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
   { timestamps: true }
+  
 );
 
 module.exports = mongoose.model('Comment', CommentSchema);

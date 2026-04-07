@@ -10,16 +10,22 @@ const initSocket = (httpServer) => {
     },
   });
 
-  io.on('connection', (socket) => {
-    socket.on('join:user-room', (userId) => {
-      socket.join(`user_${userId}`);
-    });
-
-    socket.on('disconnect', () => {});
+io.on('connection', (socket) => {
+  socket.on('join:user-room', (userId) => {
+    socket.join(`user_${userId}`);
   });
+
+  socket.on('join:group-room', (groupId) => {
+    socket.join(`group_${groupId}`);
+  });
+
+  socket.on('disconnect', () => {});
+});
 
   return io;
 };
+
+
 
 const getIO = () => {
   if (!io) throw new Error('Socket.IO not initialized');

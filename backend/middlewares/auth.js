@@ -7,20 +7,20 @@ const auth = async (req, res, next) => {
     const [type, token] = authHeader.split(' ');
 
     if (type !== 'Bearer' || !token) {
-      return next(new Error('Unauthorized'));
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 
     const decoded = verifyAccessToken(token);
     const user = await User.findById(decoded.userId).populate('role');
 
     if (!user || !user.isActive) {
-      return next(new Error('User not found or inactive'));
+      return res.status(401).json({ success: false, message: 'User not found or inactive' });
     }
 
     req.user = user;
     return next();
   } catch (error) {
-    return next(new Error('Invalid or expired token'));
+    return res.status(401).json({ success: false, message: 'Invalid or expired token' });
   }
 };
 

@@ -6,6 +6,7 @@ const PostSchema = new mongoose.Schema(
     group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', default: null },
     title: { type: String, required: true, trim: true },
     content: { type: String, required: true },
+    subject: { type: String, default: 'Chung' },
     images: [{ type: String }],
     files: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Upload' }],
     tags: [{ type: String }],

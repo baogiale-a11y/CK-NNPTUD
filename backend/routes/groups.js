@@ -1,5 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
+const authorize = require('../middlewares/authorize');
 const groupController = require('../controllers/group');
 const { getIO } = require('../utils/socket');
 const { ok, fail } = require('../utils/response');
@@ -66,6 +67,7 @@ router.post('/:id/join', auth, async (req, res) => {
     const data = await groupController.joinGroup({
       id: req.params.id,
       currentUser: req.user,
+      body: req.body,
     });
 
     const io = getIO();

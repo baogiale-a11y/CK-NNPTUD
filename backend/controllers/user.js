@@ -23,10 +23,15 @@ const updateUser = async ({ id, currentUser, body }) => {
   const isSelf = String(currentUser?._id) === String(id);
   if (!isAdmin && !isSelf) throw new Error('Forbidden');
 
-  const allowFields = ['username', 'bio', 'school', 'avatar'];
+  const allowFields = ['username', 'bio', 'school', 'avatar', 'coverPhoto'];
   allowFields.forEach((field) => {
     if (body[field] !== undefined) target[field] = body[field];
   });
+
+  // Admin-only: lock/unlock accounts
+  if (typeof body.isActive === 'boolean' && isAdmin) {
+    target.isActive = body.isActive;
+  }
 
   if (body.role && isAdmin) {
     const role = await Role.findById(body.role);
@@ -50,9 +55,22 @@ const deleteUser = async ({ id, currentUser }) => {
   return { deletedId: id };
 };
 
+const searchUsers = async ({ query }) => {
+  const { name } = query;
+  if (!name) return [];
+  const regex = new RegExp(name, 'i');
+  return await User.find({
+    $or: [
+      { username: regex },
+      { fullName: regex }
+    ]
+  }).select('username fullName avatar').limit(10);
+};
+
 module.exports = {
   getUsers,
   getUserById,
   updateUser,
   deleteUser,
+  searchUsers,
 };

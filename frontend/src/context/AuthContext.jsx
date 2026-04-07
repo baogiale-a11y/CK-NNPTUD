@@ -1,10 +1,28 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 import http from '../api/http';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      http.get('/auth/me')
+        .then(res => {
+          const u = res.data?.data || res.data;
+          setUser(u);
+        })
+        .catch(() => {
+          localStorage.clear();
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   const login = async (email, password) => {
     const { data } = await http.post('/auth/login', { email, password });
@@ -38,14 +56,20 @@ export function AuthProvider({ children }) {
       login,
       register,
       logout,
+      loading,
       isAuthenticated: Boolean(localStorage.getItem('accessToken')),
     }),
-    [user]
+    [user, loading]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
   return useContext(AuthContext);
 }
+

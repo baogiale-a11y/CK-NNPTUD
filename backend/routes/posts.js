@@ -1,13 +1,22 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
+const optionalAuth = require('../middlewares/optionalAuth');
 const postController = require('../controllers/post');
+const Notification = require('../schemas/Notification');
+const { getIO } = require('../utils/socket');
 const { ok, fail } = require('../utils/response');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', optionalAuth, async (req, res) => {
   try {
-    const data = await postController.getPosts({ query: req.query });
+    const notifySearch = String(req.query.notify) === '1';
+    const data = await postController.getPosts({
+      query: req.query,
+      currentUser: req.user,
+      notifySearch
+    });
+
     return ok(res, data, 'Get posts success');
   } catch (error) {
     return fail(res, error.message, 400);

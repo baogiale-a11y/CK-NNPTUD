@@ -8,7 +8,7 @@ const createUpload = async ({ file, currentUser, body }) => {
     originalName: file.originalname,
     mimetype: file.mimetype,
     size: file.size,
-    path: file.path,
+    path: `/uploads/${file.filename}`,
     uploadedBy: currentUser._id,
     relatedModel: body.relatedModel || '',
     relatedId: body.relatedId || null,
