@@ -1,0 +1,961 @@
+{
+  "info": {
+    "_postman_id": "f930491f-743c-4d8c-a5e7-6fd2742263a8",
+    "name": "StudyTogether api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42936089",
+    "_collection_link": "https://go.postman.co/collection/42936089-f930491f-743c-4d8c-a5e7-6fd2742263a8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"legiabao1928@gmail.com\", \"password\": \"Admin@123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"test\", \"email\": \"test@test.com\", \"password\": \"Test123@\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"refreshToken\": \"{{refresh_token}}\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/refresh-token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "refresh-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "GET /posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/posts?page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /posts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Test\", \"content\": \"Test content\", \"subject\": \"Toán\", \"files\": []}"
+            },
+            "url": {
+              "raw": "{{base_url}}/posts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /posts/:id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/posts/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /posts/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Updated\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/posts/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /posts/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/posts/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /posts/:id/like",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/posts/67f9d4f67d5f1b1b2c4d5e6f/like",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "posts",
+                "67f9d4f67d5f1b1b2c4d5e6f",
+                "like"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Uploads",
+      "item": [
+        {
+          "name": "POST /uploads (PNG)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/path/to/cheems.png"
+                },
+                {
+                  "key": "relatedModel",
+                  "value": "Post"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/uploads",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "uploads"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /uploads",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/uploads",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "uploads"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /uploads/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/uploads/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "uploads",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "GET /comments?postId=...",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/comments?postId=67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "postId",
+                  "value": "67f9d4f67d5f1b1b2c4d5e6f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /comments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"post\": \"67f9d4f67d5f1b1b2c4d5e6f\", \"content\": \"Test\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/comments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /comments/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"content\": \"Updated\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/comments/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /comments/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/comments/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "GET /messages?to=...",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/messages?to=67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "messages"
+              ],
+              "query": [
+                {
+                  "key": "to",
+                  "value": "67f9d4f67d5f1b1b2c4d5e6f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWQyODRhZDY4ZDBjZDIwNGNiZGM4ZTMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzU2MzU3NjIsImV4cCI6MTc3NTYzOTM2Mn0.wwlVo7ssn5XT2zSH5dLTiQg4Uof44h3OxB7u-Dq3VNQ",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"receiver\": \"69d5cc33aadbe59f00cab58f\", \r\n    \"content\":\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/messages",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "messages"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "GET /notifications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notifications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "notifications"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /notifications/:id",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notifications/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "notifications",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /notifications/mark-all-read",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/notifications/mark-all-read",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "notifications",
+                "mark-all-read"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Groups",
+      "item": [
+        {
+          "name": "GET /groups",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/groups",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /groups",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Test\", \"subject\": \"Toán\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/groups",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /groups/:id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/groups/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /groups/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Updated\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/groups/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /groups/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/groups/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /groups/:id/join",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/groups/67f9d4f67d5f1b1b2c4d5e6f/join",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups",
+                "67f9d4f67d5f1b1b2c4d5e6f",
+                "join"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /groups/:id/leave",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/groups/67f9d4f67d5f1b1b2c4d5e6f/leave",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "groups",
+                "67f9d4f67d5f1b1b2c4d5e6f",
+                "leave"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Follow",
+      "item": [
+        {
+          "name": "GET /follows/:id/followers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/follows/67f9d4f67d5f1b1b2c4d5e6f/followers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "follows",
+                "67f9d4f67d5f1b1b2c4d5e6f",
+                "followers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /follows/:id/following",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/follows/67f9d4f67d5f1b1b2c4d5e6f/following",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "follows",
+                "67f9d4f67d5f1b1b2c4d5e6f",
+                "following"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /follows/:id",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/follows/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "follows",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /follows/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/follows/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "follows",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "GET /roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/roles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /roles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"moderator\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/roles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /roles/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"updated\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/roles/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "roles",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /roles/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/roles/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "roles",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "GET /users",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "GET /users/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /users/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/67f9d4f67d5f1b1b2c4d5e6f",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "67f9d4f67d5f1b1b2c4d5e6f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /users/:id (Active)",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

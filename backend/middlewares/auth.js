@@ -10,8 +10,10 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 
-    const decoded = verifyAccessToken(token);
+  const decoded = verifyAccessToken(token);
+  console.log('Auth decoded:', decoded.userId, 'Token:', token.substring(0,20) + '...');
     const user = await User.findById(decoded.userId).populate('role');
+  console.log('Found user:', user ? user.username : 'NO USER', 'Role:', user?.role?.name);
 
     if (!user || !user.isActive) {
       return res.status(401).json({ success: false, message: 'User not found or inactive' });

@@ -257,7 +257,48 @@ export default function PostDetailPage() {
                 <span key={i} className="tag">{`#${String(tag).replace(/^#/, '')}`}</span>
               ))}
             </div>
+            
+            {post?.files && post.files.length > 0 && (
+              <div className="post-files-section" style={{ marginBottom: '24px', padding: '20px', background: 'var(--bg-light)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }}>
+                <h4 style={{ margin: '0 0 16px 0', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-main)' }}>📎 File đính kèm ({post.files.length})</h4>
+                <div style={{ display: 'grid', gap: '12px', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+                  {post.files.map((file) => (
+                    <a 
+                      key={file._id}
+                      href={`http://localhost:5000${file.path}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      download={file.originalName}
+                      className="file-download-btn"
+                      style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+                        padding: '16px', background: 'white', 
+                        color: 'var(--text-main)', textDecoration: 'none', borderRadius: 'var(--radius-md)',
+                        fontWeight: 500, transition: 'all 0.2s', border: '1px solid var(--border)',
+                        textAlign: 'center'
+                      }}
+                    >
+                      {file.mimetype?.startsWith('image/') ? (
+                        <img src={`http://localhost:5000${file.path}`} alt={file.originalName} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '6px' }} />
+                      ) : (
+                        <div style={{ width: '80px', height: '80px', borderRadius: '6px', background: 'var(--bg-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>
+                          {file.mimetype?.includes('pdf') ? '📄' : '📎'}
+                        </div>
+                      )}
+                      <div style={{ fontSize: '0.85rem', lineHeight: 1.3 }}>
+                        {file.originalName?.substring(0, 25) || file.filename?.substring(0, 25) || 'File'}{ (file.originalName || file.filename)?.length > 25 ? '...' : ''}
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                          {(file.size / 1024 / 1024).toFixed(1)} MB
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            
             <div className="post-text" dangerouslySetInnerHTML={{ __html: post?.content || 'Không có nội dung' }} />
+
           </div>
         </div>
 

@@ -113,6 +113,7 @@ const updatePost = async ({ id, body, currentUser }) => {
 };
 
 const deletePost = async ({ id, currentUser }) => {
+  console.log('Delete post attempt:', 'ID:', id, 'User:', currentUser.username, 'Role:', currentUser.role?.name);
   const post = await Post.findById(id).populate('author');
   if (!post) throw new Error('Post not found');
 

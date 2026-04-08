@@ -173,6 +173,7 @@ const handleLike = async (postId) => {
         content: stripHtml(post.content),
         subject: post.subject || post.category || 'General',
         tags: post.tags || [],
+        files: post.files || [],
         likes: post.likes || [],
 
         author: post.author,
@@ -290,7 +291,41 @@ const handleLike = async (postId) => {
                     </div>
                   )}
                   
+                  {post.files?.length > 0 && (
+                    <div className="post-files-preview" style={{ marginTop: '12px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                      {post.files.slice(0, 3).map((file, i) => (
+                        <a 
+                          key={file._id || i}
+                          href={`http://localhost:5000${file.path}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="file-preview"
+                          style={{ 
+                            display: 'flex', alignItems: 'center', gap: '6px', 
+                            padding: '6px 10px', background: 'var(--bg-light)', 
+                            borderRadius: '6px', fontSize: '0.8rem', 
+                            color: 'var(--text-main)', textDecoration: 'none',
+                            border: '1px solid var(--border)', minWidth: '120px' 
+                          }}
+                          title={file.originalName || file.filename}
+                        >
+                          {file.mimetype?.startsWith('image/') ? '🖼️' : '📎'}
+                          {(file.originalName || file.filename || 'File').substring(0, 15)}{(file.originalName || file.filename || 'File').length > 15 ? '...' : ''}
+                        </a>
+                      ))}
+                      {post.files.length > 3 && (
+                        <span className="file-count" style={{ 
+                          padding: '6px 10px', background: 'var(--bg-light)', 
+                          borderRadius: '6px', fontSize: '0.8rem', border: '1px solid var(--border)' 
+                        }}>
+                          +{post.files.length - 3} file
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  
                   <div className="reactions-bar" style={{ marginTop: '20px' }}>
+
                     <button className={`reaction-btn btn-modern ${(post?.likes || []).map(l => String(typeof l === 'string' ? l : l?._id)).includes(String(user?._id)) ? 'liked' : ''}`} onClick={(e) => { e.stopPropagation(); handleLike(post._id); }}>
                       <span className="reaction-emoji">❤️</span>
                       <strong>{Array.isArray(post?.likes) ? post.likes.length : (post.reactions?.like || 0)}</strong>
